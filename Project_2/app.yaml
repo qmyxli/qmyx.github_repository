@@ -1,0 +1,57 @@
+project:
+  name: drug-instruction-rag
+  language: zh
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  chroma_dir: data/chroma
+
+index:
+  chunk_collection: drug_chunks
+  summary_collection: drug_summaries
+
+rerank:
+  # Production rerank layer. In auto mode, fixed-section questions still use
+  # keyword rerank; safety/general/hybrid retrieval paths use the model reranker.
+  provider: dashscope
+  model: gte-rerank-v2
+  endpoint: https://dashscope.aliyuncs.com/api/v1/services/rerank/text-rerank/text-rerank
+  api_key_env: DASHSCOPE_API_KEY
+  timeout: 30
+  use_for_strategies:
+    - safety_hybrid
+    - summary_guided_hybrid
+    - hybrid
+  preserve_preferred_sections: true
+
+embedding:
+  # DashScope OpenAI-compatible embedding. API key is read from DASHSCOPE_API_KEY.
+  provider: dashscope_compatible
+  model: text-embedding-v3
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_key_env: DASHSCOPE_API_KEY
+  dimensions: null
+
+llm:
+  # Controlled generation layer. API key is read from DASHSCOPE_API_KEY.
+  provider: dashscope_compatible
+  model: qwen-max #qwen3-max-2026-01-23
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_key_env: DASHSCOPE_API_KEY
+  temperature: 0.1
+  evidence:
+    # Evidence budget for the controlled LLM prompt. Increase these values when
+    # switching to a model with a larger context window; decrease them to reduce
+    # latency/cost for smaller models.
+    max_chars_per_doc: 1200
+    max_total_chars: 6000
+    max_chars_per_drug: 1800
+    max_chars_per_drug_doc: 900
+
+prompts:
+  path: configs/prompts.yaml
+
+safety:
+  require_source_citations: true
+  medical_disclaimer: true
