@@ -1,0 +1,2 @@
+[console_scripts]
+drug-rag = drug_rag.cli:main

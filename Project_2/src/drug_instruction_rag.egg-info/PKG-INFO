@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: drug-instruction-rag
+Version: 0.1.0
+Summary: AdvanceRAG style RAG system for pharmacy drug instruction PDFs.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pypdf>=4.0.0
+Requires-Dist: pyyaml>=6.0.0
+Requires-Dist: chromadb>=0.5.0
+Requires-Dist: langchain>=0.2.0
+Requires-Dist: langchain-community>=0.2.0
+Requires-Dist: langchain-chroma>=0.1.0
+Requires-Dist: langchain-core>=0.2.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: tenacity>=8.2.0
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn[standard]>=0.30.0
+Requires-Dist: python-multipart>=0.0.9
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
