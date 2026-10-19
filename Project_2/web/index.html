@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智能药品说明书AI助手</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <button id="settingsButton" class="settings-button" type="button" title="设置" aria-label="打开设置">
+        ⚙
+      </button>
+      <div class="hero-inner">
+        <h1>智能药品说明书AI助手</h1>
+        <p>上传药品说明书并与AI助手对话，获取基于文档内容的回答和数据来源</p>
+        <div id="systemStatus" class="system-status">连接中</div>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="upload-panel" aria-label="文件上传">
+        <div class="panel-heading">
+          <h2>文件上传</h2>
+        </div>
+        <p class="panel-note">上传您的文档，AI助手将基于文档内容回答您的问题</p>
+
+        <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="选择或拖放文件上传">
+          <input id="fileInput" class="file-input" type="file" accept=".pdf,.txt,.md,.docx" multiple />
+          <strong>拖放文件到此处或点击上传</strong>
+          <span>支持 PDF、DOCX、TXT、MD，最大文件大小：10MB</span>
+          <button id="chooseFileButton" class="upload-button" type="button">选择文件</button>
+        </div>
+
+        <div id="uploadStatus" class="upload-status" aria-live="polite"></div>
+
+        <div class="uploaded-header">
+          <h3>已上传文件</h3>
+          <button id="refreshCatalogButton" class="refresh-button" type="button" title="刷新目录" aria-label="刷新目录">
+            ⟳
+          </button>
+        </div>
+        <div id="uploadedFiles" class="uploaded-list"></div>
+      </section>
+
+      <section class="chat-panel" aria-label="智能客服对话">
+        <div class="panel-heading">
+          <h2>智能客服对话</h2>
+        </div>
+
+        <div id="chatMessages" class="chat-messages" aria-live="polite">
+          <article class="message assistant-message">
+            <div class="message-role">AI助手</div>
+            <p>您好！我是您的智能助手。您可以上传药品说明书，然后向我提问。每次回答我都会提供数据来源，方便您核实信息。</p>
+          </article>
+        </div>
+
+        <div class="sample-strip" aria-label="追问提示">
+          <span class="sample-label">可以追问</span>
+          <button type="button" data-question="坎地沙坦酯片一天吃几次？">用法用量</button>
+          <button type="button" data-question="必洛斯孕妇能不能用？">孕妇能用吗</button>
+          <button type="button" data-question="儿童可以用坎地沙坦酯片吗？">儿童能用吗</button>
+          <button type="button" data-question="这个药怎么贮藏？">怎么贮藏</button>
+          <button type="button" data-question="有效期多久？">有效期</button>
+          <button type="button" data-question="这个药放冰箱行吗">放冰箱行吗</button>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <textarea id="questionInput" rows="2" placeholder="请输入关于药品说明书的问题"></textarea>
+          <button id="askButton" class="send-button" type="submit">发送</button>
+        </form>
+      </section>
+    </main>
+
+    <aside id="settingsDrawer" class="settings-drawer" aria-hidden="true">
+      <div class="drawer-backdrop" data-close-settings></div>
+      <section class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="drawer-header">
+          <h2 id="settingsTitle">检索设置</h2>
+          <button class="close-button" type="button" data-close-settings aria-label="关闭设置">×</button>
+        </div>
+
+        <p class="settings-note">
+          系统会根据问题意图自动选择元数据过滤、问题重写、摘要索引、混合检索和 rerank 策略。
+        </p>
+
+        <div class="settings-grid">
+          <label>
+            药品名
+            <input id="drugNameInput" type="text" placeholder="自动识别" />
+          </label>
+          <label>
+            通用名
+            <input id="genericNameInput" type="text" placeholder="自动识别" />
+          </label>
+          <label>
+            分类
+            <input id="categoryInput" type="text" placeholder="自动识别" />
+          </label>
+          <label>
+            上传默认分类
+            <input id="uploadCategoryInput" type="text" value="上传文档" />
+          </label>
+        </div>
+
+        <label class="switch-row">
+          <input id="useCatalogInput" type="checkbox" checked />
+          <span>使用药品目录自动收窄</span>
+        </label>
+        <label class="switch-row">
+          <input id="showTraceInput" type="checkbox" checked />
+          <span>在回答中展示检索来源</span>
+        </label>
+
+        <div class="drawer-footer">
+          <button id="retrieveButton" class="secondary-button" type="button">只检索当前问题</button>
+          <button class="primary-button" type="button" data-close-settings>完成</button>
+        </div>
+      </section>
+    </aside>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
