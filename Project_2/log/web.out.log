@@ -1,0 +1,13 @@
+INFO:     127.0.0.1:52256 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55511 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55518 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55519 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55460 - "GET /?v=mobile HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55460 - "GET /assets/styles.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:63910 - "GET /assets/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:55460 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63910 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56281 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54472 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61078 - "POST /api/ask HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54499 - "POST /api/ask HTTP/1.1" 200 OK
