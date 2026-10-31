@@ -1,0 +1,145 @@
+2026-10-22 21:33:26,916 - agent.core_agent - INFO - ✓ 大模型已接入
+2026-10-22 21:33:26,918 - agent.knowledge.knowledge_base - INFO - ✓ 知识库初始化完成: 8 个指标, 4 条业务规则
+2026-10-22 21:33:26,919 - agent.core_agent - INFO - ✓ RAG知识库已启用
+2026-10-22 21:33:26,926 - agent.react_agent - INFO - ✓ ReAct Agent初始化完成 (工具: ['nl2sql_query', 'analyze_data', 'generate_chart', 'generate_report', 'search_knowledge'], 最大步数: 10)
+2026-10-22 21:33:26,927 - agent.core_agent - INFO - ✓ ReAct智能体已启用
+2026-10-22 21:33:26,928 - agent.core_agent - INFO - ✓ 电商数据分析Agent初始化完成
+2026-10-22 21:34:49,736 - agent.core_agent - INFO - ✓ 大模型已接入
+2026-10-22 21:34:49,737 - agent.knowledge.knowledge_base - INFO - ✓ 知识库初始化完成: 8 个指标, 4 条业务规则
+2026-10-22 21:34:49,737 - agent.core_agent - INFO - ✓ RAG知识库已启用
+2026-10-22 21:34:49,737 - agent.react_agent - INFO - ✓ ReAct Agent初始化完成 (工具: ['nl2sql_query', 'analyze_data', 'generate_chart', 'generate_report', 'search_knowledge'], 最大步数: 10)
+2026-10-22 21:34:49,737 - agent.core_agent - INFO - ✓ ReAct智能体已启用
+2026-10-22 21:34:49,737 - agent.core_agent - INFO - ✓ 电商数据分析Agent初始化完成
+2026-10-22 21:35:07,018 - agent.core_agent - INFO - 连接数据库: mysql://root:592954#LIug90o@127.0.0.1:3306/mytest...
+2026-10-22 21:35:07,601 - agent.tools.database_connector - INFO - ✓ 数据库连接成功
+2026-10-22 21:35:07,601 - agent.tools.nl2sql - INFO - ✓ NL2SQL引擎初始化完成 (最大重试: 3)
+2026-10-22 21:35:07,601 - agent.core_agent - INFO - ✓ NL2SQL引擎已初始化
+2026-10-22 21:35:07,601 - agent.core_agent - INFO - ✓ 数据库连接成功
+2026-10-22 21:35:07,602 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-22 21:35:07,691 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:35:07,693 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-22 21:35:07,693 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-22 21:35:07,706 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-22 21:35:07,732 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-22 21:35:07,732 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-22 21:35:07,739 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-22 21:35:07,744 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-22 21:35:07,744 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-22 21:35:07,749 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:35:07,751 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-22 21:35:07,752 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-22 21:35:07,758 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-22 21:35:07,760 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-22 21:35:43,790 - agent.react_agent - INFO - ReAct Agent开始处理: 3月份销售总额是多少
+2026-10-22 21:35:43,791 - agent.react_agent - INFO - --- ReAct 步骤 1 ---
+2026-10-22 21:35:51,608 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:35:51,634 - agent.react_agent - ERROR - 工具执行失败 (nl2sql_query): EcommerceAgent._react_nl2sql_query() got an unexpected keyword argument 'table_schema'
+2026-10-22 21:35:51,634 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 工具执行失败: EcommerceAgent._react_nl2sql_query() got an unexpected keyword argument 'table_schema'...
+2026-10-22 21:35:51,634 - agent.react_agent - INFO - --- ReAct 步骤 2 ---
+2026-10-22 21:35:54,064 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:35:54,065 - agent.tools.nl2sql - INFO - NL2SQL查询: 3月份销售总额
+2026-10-22 21:35:54,066 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-22 21:35:54,066 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-22 21:35:54,066 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-22 21:35:54,071 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:35:54,071 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-22 21:35:54,072 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-22 21:35:54,077 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-22 21:35:54,079 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-22 21:35:54,079 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-22 21:35:54,084 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-22 21:35:54,090 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-22 21:35:54,090 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-22 21:35:54,095 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:35:54,098 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-22 21:35:54,098 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-22 21:35:54,103 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-22 21:35:54,107 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-22 21:35:54,107 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-22 21:35:54,108 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-22 21:35:55,339 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:35:55,341 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT SUM(total_amount) AS total_sales
+FROM sales_data
+WHERE order_date LIKE '2023-03-%'...
+2026-10-22 21:35:55,342 - agent.tools.database_connector - ERROR - SQL查询失败: unsupported format character ''' (0x27) at index 88
+2026-10-22 21:35:55,342 - agent.tools.nl2sql - WARNING - SQL执行失败 (尝试 1): unsupported format character ''' (0x27) at index 88
+2026-10-22 21:35:55,343 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询失败: 查询失败 (重试0次): unsupported format character ''' (0x27) at index 88...
+2026-10-22 21:35:55,343 - agent.react_agent - INFO - --- ReAct 步骤 3 ---
+2026-10-22 21:35:59,197 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:35:59,198 - agent.react_agent - INFO - Action: analyze_data, Observation: 没有可用数据集，请先加载数据...
+2026-10-22 21:35:59,198 - agent.react_agent - INFO - --- ReAct 步骤 4 ---
+2026-10-22 21:36:02,043 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:02,045 - agent.knowledge.knowledge_base - INFO - 检索到 1 个相关指标: ['GMV']
+2026-10-22 21:36:02,045 - agent.react_agent - INFO - Action: search_knowledge, Observation: - GMV（成交总额）: 所有已完成订单的总金额，不含退款和取消订单...
+2026-10-22 21:36:02,045 - agent.react_agent - INFO - --- ReAct 步骤 5 ---
+2026-10-22 21:36:12,156 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:12,158 - agent.react_agent - ERROR - 工具执行失败 (search_knowledge): EcommerceAgent._react_search_knowledge() missing 1 required positional argument: 'query'
+2026-10-22 21:36:12,158 - agent.react_agent - INFO - Action: search_knowledge, Observation: 工具执行失败: EcommerceAgent._react_search_knowledge() missing 1 required positional argument: 'query'...
+2026-10-22 21:36:12,158 - agent.react_agent - INFO - --- ReAct 步骤 6 ---
+2026-10-22 21:36:15,854 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:15,858 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-22 21:36:15,859 - agent.react_agent - INFO - Action: search_knowledge, Observation: 未找到相关指标...
+2026-10-22 21:36:15,859 - agent.react_agent - INFO - --- ReAct 步骤 7 ---
+2026-10-22 21:36:21,990 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:21,992 - agent.core_agent - INFO - 生成报告: html
+2026-10-22 21:36:21,992 - agent.tools.report_generator - INFO - 生成HTML报告
+2026-10-22 21:36:21,994 - agent.tools.report_generator - INFO - ✓ HTML报告已保存: E:\7.2026找工作做项目\智泊AI课程 L1-L4资料\Four_traeTest\ecommerce_agent\output\report.html
+2026-10-22 21:36:21,994 - agent.core_agent - INFO - ✓ 报告生成完成: E:\7.2026找工作做项目\智泊AI课程 L1-L4资料\Four_traeTest\ecommerce_agent\output\report.html
+2026-10-22 21:36:21,994 - agent.react_agent - INFO - Action: generate_report, Observation: 报告已生成: E:\7.2026找工作做项目\智泊AI课程 L1-L4资料\Four_traeTest\ecommerce_agent\output\report.html...
+2026-10-22 21:36:21,994 - agent.react_agent - INFO - --- ReAct 步骤 8 ---
+2026-10-22 21:36:39,572 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:39,574 - agent.react_agent - ERROR - 工具执行失败 (generate_report): EcommerceAgent._react_generate_report() got an unexpected keyword argument 'query'
+2026-10-22 21:36:39,574 - agent.react_agent - INFO - Action: generate_report, Observation: 工具执行失败: EcommerceAgent._react_generate_report() got an unexpected keyword argument 'query'...
+2026-10-22 21:36:39,574 - agent.react_agent - INFO - --- ReAct 步骤 9 ---
+2026-10-22 21:36:53,824 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:36:53,825 - agent.react_agent - INFO - ReAct完成 (共9步)
+2026-10-22 21:37:08,904 - agent.core_agent - INFO - 加载数据: E:\7.2026找工作做项目\智泊AI课程 L1-L4资料\Four_traeTest\ecommerce_agent\data\raw\sales_data_2000.csv (类型: csv)
+2026-10-22 21:37:08,904 - agent.tools.data_collector - INFO - 从CSV加载数据: E:\7.2026找工作做项目\智泊AI课程 L1-L4资料\Four_traeTest\ecommerce_agent\data\raw\sales_data_2000.csv
+2026-10-22 21:37:08,920 - agent.tools.data_collector - INFO - ✓ CSV加载成功: 2000 行, 6 列
+2026-10-22 21:37:12,978 - agent.core_agent - INFO - 执行分析: descriptive on sales_data_2000
+2026-10-22 21:37:12,979 - agent.tools.data_analyzer - INFO - 执行描述性统计分析
+2026-10-22 21:37:13,000 - agent.core_agent - INFO - ✓ 分析完成: descriptive
+2026-10-22 21:37:16,480 - agent.core_agent - INFO - 执行分析: rfm on sales_data_2000
+2026-10-22 21:37:16,480 - agent.tools.data_analyzer - INFO - 执行RFM分析
+2026-10-22 21:37:16,697 - agent.tools.data_analyzer - INFO - ✓ RFM分析完成, 349 个客户
+2026-10-22 21:37:16,697 - agent.core_agent - INFO - ✓ 分析完成: rfm
+2026-10-22 21:37:20,334 - agent.core_agent - INFO - 执行分析: trend on sales_data_2000
+2026-10-22 21:37:20,335 - agent.tools.data_analyzer - INFO - 执行趋势分析, 频率=ME
+2026-10-22 21:37:20,362 - agent.tools.data_analyzer - INFO - ✓ 趋势分析完成
+2026-10-22 21:37:20,362 - agent.core_agent - INFO - ✓ 分析完成: trend
+2026-10-22 21:37:27,793 - agent.core_agent - INFO - 执行分析: correlation on sales_data_2000
+2026-10-22 21:37:27,794 - agent.tools.data_analyzer - INFO - 执行相关性分析
+2026-10-22 21:37:27,798 - agent.core_agent - INFO - ✓ 分析完成: correlation
+2026-10-22 21:38:10,555 - agent.react_agent - INFO - ReAct Agent开始处理: 请你显示 RFM分析结果
+2026-10-22 21:38:10,555 - agent.react_agent - INFO - --- ReAct 步骤 1 ---
+2026-10-22 21:38:13,369 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:38:13,371 - agent.tools.nl2sql - INFO - NL2SQL查询: SELECT customer_id, order_date, total_amount FROM orders LIMIT 1000
+2026-10-22 21:38:13,371 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-22 21:38:13,371 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-22 21:38:13,371 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-22 21:38:13,376 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:38:13,377 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-22 21:38:13,377 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-22 21:38:13,382 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-22 21:38:13,384 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-22 21:38:13,385 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-22 21:38:13,393 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-22 21:38:13,398 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-22 21:38:13,398 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-22 21:38:13,403 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-22 21:38:13,406 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-22 21:38:13,406 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-22 21:38:13,411 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-22 21:38:13,414 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-22 21:38:13,414 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-22 21:38:13,414 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-22 21:38:14,154 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 21:38:14,156 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT customer_id, order_date, total_amount FROM sales_data LIMIT 1000...
+2026-10-22 21:38:14,183 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 1000 行
+2026-10-22 21:38:14,247 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询成功:
+    customer_id  order_date  total_amount
+0      CUST1271  2025-10-20        1290.0
+1      CUS...
+2026-10-22 21:38:14,247 - agent.react_agent - INFO - --- ReAct 步骤 2 ---
+2026-10-22 21:48:14,260 - openai._base_client - INFO - Retrying request to /chat/completions in 0.415533 seconds
+2026-10-22 21:58:14,831 - openai._base_client - INFO - Retrying request to /chat/completions in 0.780871 seconds

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商数据分析Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status-value {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 500px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: #f8f9fa;
+        }
+
+        .upload-area.dragover {
+            background: #e7f3ff;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .result-box pre {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.assistant {
+            background: white;
+            border: 2px solid #e0e0e0;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .metric {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 电商数据分析Agent</h1>
+            <p class="subtitle">基于ReAct范式的智能数据分析系统 | FastAPI + Vue</p>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">已加载数据集:</span>
+                    <span class="status-value" id="datasetCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">已完成分析:</span>
+                    <span class="status-value" id="analysisCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">数据库状态:</span>
+                    <span class="status-value" id="dbStatus">未连接</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('home', this)">🏠 首页</button>
+            <button class="tab" onclick="switchTab('data', this)">📁 数据管理</button>
+            <button class="tab" onclick="switchTab('analyze', this)">📊 数据分析</button>
+            <button class="tab" onclick="switchTab('database', this)">🗄️ 数据库</button>
+            <button class="tab" onclick="switchTab('chat', this)">💬 智能问答</button>
+        </div>
+
+        <div class="content">
+            <!-- 首页 -->
+            <div id="home" class="section active">
+                <h2>欢迎使用电商数据分析Agent</h2>
+                <p style="margin: 20px 0; color: #666;">这是一个基于ReAct范式的智能数据分析系统，支持自然语言提问、自动化分析流程。</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>📁 数据管理</h4>
+                        <p>上传CSV/Excel文件，或加载示例数据进行测试</p>
+                    </div>
+                    <div class="card">
+                        <h4>📊 数据分析</h4>
+                        <p>描述性统计、RFM客户分析、趋势分析、相关性分析</p>
+                    </div>
+                    <div class="card">
+                        <h4>🗄️ 数据库集成</h4>
+                        <p>连接PostgreSQL/MySQL/SQLite，执行SQL查询</p>
+                    </div>
+                    <div class="card">
+                        <h4>💬 智能问答</h4>
+                        <p>自然语言提问，ReAct智能体自动推理执行</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn" onclick="loadSampleData()">加载示例数据</button>
+                    <button class="btn btn-secondary" onclick="refreshStatus()">刷新状态</button>
+                </div>
+            </div>
+
+            <!-- 数据管理 -->
+            <div id="data" class="section">
+                <h2>数据管理</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <h3>📤 上传数据文件</h3>
+                    <p style="margin: 20px 0; color: #666;">拖拽文件到此处，或点击选择文件</p>
+                    <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
+                    <button class="btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+                </div>
+
+                <div id="uploadResult"></div>
+
+                <div id="datasetsList" style="margin-top: 30px;"></div>
+            </div>
+
+            <!-- 数据分析 -->
+            <div id="analyze" class="section">
+                <h2>数据分析</h2>
+                
+                <div class="form-group">
+                    <label>选择数据集</label>
+                    <select id="datasetSelect"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>分析类型</label>
+                    <select id="analysisType">
+                        <option value="descriptive">描述性统计</option>
+                        <option value="rfm">RFM客户分析</option>
+                        <option value="trend">趋势分析</option>
+                        <option value="correlation">相关性分析</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="runAnalysis()">开始分析</button>
+
+                <div id="analysisResult"></div>
+            </div>
+
+            <!-- 数据库 -->
+            <div id="database" class="section">
+                <h2>数据库管理</h2>
+                
+                <div class="form-group">
+                    <label>数据库连接字符串</label>
+                    <input type="text" id="dbConnectionString" placeholder="sqlite:///test.db 或 postgresql://user:pass@host/db">
+                </div>
+
+                <button class="btn" onclick="connectDatabase()">连接数据库</button>
+
+                <div id="dbResult" style="margin-top: 20px;"></div>
+
+                <div id="tablesList" style="margin-top: 30px;"></div>
+            </div>
+
+            <!-- 智能问答 -->
+            <div id="chat" class="section">
+                <h2>智能问答</h2>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant">
+                            你好！我是电商数据分析Agent，你可以问我任何关于数据分析的问题，例如：
+                            <br><br>
+                            • "分析客户价值分布"
+                            <br>
+                            • "查看销售趋势"
+                            <br>
+                            • "哪些客户是高价值客户"
+                        </div>
+                    </div>
+
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="输入你的问题..." onkeypress="if(event.key==='Enter') sendChat()">
+                        <button class="btn" onclick="sendChat()">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        // 切换标签页
+        function switchTab(tabName, btn) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+
+            if (tabName === 'data') {
+                loadDatasets();
+            } else if (tabName === 'analyze') {
+                updateDatasetSelect();
+            }
+        }
+
+        // 刷新状态
+        async function refreshStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/status`);
+                const status = await response.json();
+                
+                document.getElementById('datasetCount').textContent = status.datasets_loaded.length;
+                document.getElementById('analysisCount').textContent = status.analyses_completed.length;
+                document.getElementById('dbStatus').textContent = status.database_connected ? '已连接' : '未连接';
+            } catch (error) {
+                console.error('刷新状态失败:', error);
+            }
+        }
+
+        // 加载示例数据
+        async function loadSampleData() {
+            try {
+                const response = await fetch(`${API_BASE}/api/data/sample?n_orders=100`, {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('✓ 示例数据加载成功！');
+                    refreshStatus();
+                    loadDatasets();
+                }
+            } catch (error) {
+                alert('❌ 加载失败: ' + error.message);
+            }
+        }
+
+        // 上传文件
+        document.getElementById('fileInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch(`${API_BASE}/api/data/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    const preview = result.preview || [];
+                    const previewHtml = preview.length > 0 ? `
+                        <h4 style="margin-top: 20px;">数据预览:</h4>
+                        <table>
+                            <thead>
+                                <tr>${Object.keys(preview[0]).map(k => `<th>${k}</th>`).join('')}</tr>
+                            </thead>
+                            <tbody>
+                                ${preview.map(row => `
+                                    <tr>${Object.values(row).map(v => `<td>${v}</td>`).join('')}</tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    ` : '';
+
+                    document.getElementById('uploadResult').innerHTML = `
+                        <div class="result-box">
+                            <h3>✓ 上传成功</h3>
+                            <p>${result.message}</p>
+                            ${previewHtml}
+                        </div>
+                    `;
+                    refreshStatus();
+                    loadDatasets();
+                } else {
+                    document.getElementById('uploadResult').innerHTML = `
+                        <div class="result-box error">❌ 上传失败: ${result.detail || '未知错误'}</div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('uploadResult').innerHTML = `
+                    <div class="result-box error">❌ 上传失败: ${error.message}</div>
+                `;
+            }
+        });
+
+        // 加载数据集列表
+        async function loadDatasets() {
+            try {
+                const response = await fetch(`${API_BASE}/api/data/datasets`);
+                const result = await response.json();
+                
+                const html = Object.entries(result.datasets).map(([name, info]) => `
+                    <div class="card">
+                        <h4>📊 ${name}</h4>
+                        <p>行数: ${info.rows} | 列数: ${info.columns.length}</p>
+                        <p style="margin-top: 10px; color: #666;">列: ${info.columns.join(', ')}</p>
+                    </div>
+                `).join('');
+                
+                document.getElementById('datasetsList').innerHTML = `
+                    <h3>已加载的数据集</h3>
+                    <div class="grid">${html}</div>
+                `;
+            } catch (error) {
+                console.error('加载数据集失败:', error);
+            }
+        }
+
+        // 更新数据集选择框
+        async function updateDatasetSelect() {
+            try {
+                const response = await fetch(`${API_BASE}/api/data/datasets`);
+                const result = await response.json();
+                
+                const select = document.getElementById('datasetSelect');
+                select.innerHTML = Object.keys(result.datasets).map(name => 
+                    `<option value="${name}">${name} (${result.datasets[name].rows} 行)</option>`
+                ).join('');
+            } catch (error) {
+                console.error('更新选择框失败:', error);
+            }
+        }
+
+        // 执行分析
+        async function runAnalysis() {
+            const datasetName = document.getElementById('datasetSelect').value;
+            const analysisType = document.getElementById('analysisType').value;
+
+            if (!datasetName) {
+                alert('请先选择数据集');
+                return;
+            }
+
+            document.getElementById('analysisResult').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>正在执行${analysisType}分析...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/analyze`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        dataset_name: datasetName,
+                        analysis_type: analysisType,
+                        params: {}
+                    })
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    let html = `<div class="result-box"><h3>✓ 分析完成</h3>`;
+                    
+                    if (result.type === 'descriptive') {
+                        html += `<p>数据形状: ${result.shape[0]} 行 × ${result.shape[1]} 列</p>`;
+                        html += `<h4 style="margin-top: 20px;">统计摘要:</h4>`;
+                        html += `<pre>${JSON.stringify(result.statistics, null, 2)}</pre>`;
+                    } else if (result.type === 'rfm') {
+                        html += `<p>客户总数: ${result.customers}</p>`;
+                        html += `<h4 style="margin-top: 20px;">客户细分分布:</h4>`;
+                        html += `<pre>${JSON.stringify(result.segments, null, 2)}</pre>`;
+                    } else if (result.type === 'trend') {
+                        html += `<p>趋势数据点: ${result.data.length}</p>`;
+                        html += `<h4 style="margin-top: 20px;">趋势数据:</h4>`;
+                        html += `<pre>${JSON.stringify(result.data.slice(0, 10), null, 2)}</pre>`;
+                    } else if (result.type === 'correlation') {
+                        html += `<h4 style="margin-top: 20px;">相关性矩阵:</h4>`;
+                        html += `<pre>${JSON.stringify(result.matrix, null, 2)}</pre>`;
+                    }
+                    
+                    html += `</div>`;
+                    document.getElementById('analysisResult').innerHTML = html;
+                    refreshStatus();
+                } else {
+                    document.getElementById('analysisResult').innerHTML = `
+                        <div class="result-box error">❌ 分析失败: ${result.detail || '未知错误'}</div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('analysisResult').innerHTML = `
+                    <div class="result-box error">❌ 分析失败: ${error.message}</div>
+                `;
+            }
+        }
+
+        // 连接数据库
+        async function connectDatabase() {
+            const connectionString = document.getElementById('dbConnectionString').value;
+            
+            if (!connectionString) {
+                alert('请输入数据库连接字符串');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/database/connect`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ connection_string: connectionString })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('dbResult').innerHTML = `
+                        <div class="result-box">
+                            <h3>✓ 数据库连接成功</h3>
+                            <p>表数量: ${result.info.tables_count}</p>
+                            <p>表列表: ${result.info.tables.join(', ')}</p>
+                        </div>
+                    `;
+                    refreshStatus();
+                } else {
+                    document.getElementById('dbResult').innerHTML = `
+                        <div class="result-box error">❌ 连接失败: ${result.detail || '未知错误'}</div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('dbResult').innerHTML = `
+                    <div class="result-box error">❌ 连接失败: ${error.message}</div>
+                `;
+            }
+        }
+
+        // 发送聊天消息
+        async function sendChat() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // 添加用户消息
+            const messagesDiv = document.getElementById('chatMessages');
+            messagesDiv.innerHTML += `<div class="message user">${message}</div>`;
+            input.value = '';
+
+            // 添加加载提示
+            const loadingId = 'loading-' + Date.now();
+            messagesDiv.innerHTML += `
+                <div class="message assistant" id="${loadingId}">
+                    <div class="spinner" style="width: 20px; height: 20px; border-width: 2px;"></div>
+                    正在思考...
+                </div>
+            `;
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/ask`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: message })
+                });
+                const result = await response.json();
+                
+                // 移除加载提示
+                document.getElementById(loadingId).remove();
+
+                if (result.success) {
+                    let answerHtml = result.answer;
+                    
+                    // 如果有推理步骤，显示详细信息
+                    if (result.steps && result.steps.length > 0) {
+                        answerHtml += `<br><br><details><summary>查看推理过程 (${result.steps.length} 步)</summary>`;
+                        answerHtml += `<pre style="margin-top: 10px;">${JSON.stringify(result.steps, null, 2)}</pre>`;
+                        answerHtml += `</details>`;
+                    }
+                    
+                    messagesDiv.innerHTML += `<div class="message assistant">${answerHtml}</div>`;
+                } else {
+                    messagesDiv.innerHTML += `<div class="message assistant error">❌ 回答失败</div>`;
+                }
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                messagesDiv.innerHTML += `<div class="message assistant error">❌ 请求失败: ${error.message}</div>`;
+            }
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 初始化
+        refreshStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+2026-10-21 22:32:36,993 - agent.core_agent - INFO - ✓ 大模型已接入
+2026-10-21 22:32:36,994 - agent.knowledge.knowledge_base - INFO - ✓ 知识库初始化完成: 8 个指标, 4 条业务规则
+2026-10-21 22:32:36,994 - agent.core_agent - INFO - ✓ RAG知识库已启用
+2026-10-21 22:32:36,994 - agent.react_agent - INFO - ✓ ReAct Agent初始化完成 (工具: ['nl2sql_query', 'analyze_data', 'generate_chart', 'generate_report', 'search_knowledge'], 最大步数: 10)
+2026-10-21 22:32:36,995 - agent.core_agent - INFO - ✓ ReAct智能体已启用
+2026-10-21 22:32:36,995 - agent.core_agent - INFO - ✓ 电商数据分析Agent初始化完成
+2026-10-21 22:32:54,745 - agent.core_agent - INFO - 连接数据库: mysql://root:592954#LIug90o@127.0.0.1:3306/mytest...
+2026-10-21 22:32:55,261 - agent.tools.database_connector - INFO - ✓ 数据库连接成功
+2026-10-21 22:32:55,261 - agent.tools.nl2sql - INFO - ✓ NL2SQL引擎初始化完成 (最大重试: 3)
+2026-10-21 22:32:55,261 - agent.core_agent - INFO - ✓ NL2SQL引擎已初始化
+2026-10-21 22:32:55,261 - agent.core_agent - INFO - ✓ 数据库连接成功
+2026-10-21 22:32:55,261 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-21 22:32:55,428 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:32:55,430 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-21 22:32:55,431 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-21 22:32:55,454 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:32:55,478 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-21 22:32:55,479 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-21 22:32:55,489 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-21 22:32:55,495 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-21 22:32:55,495 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-21 22:32:55,503 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:32:55,506 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-21 22:32:55,506 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-21 22:32:55,513 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-21 22:32:55,516 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-21 22:33:12,291 - agent.react_agent - INFO - ReAct Agent开始处理: 分析客户价值分布
+2026-10-21 22:33:12,292 - agent.react_agent - INFO - --- ReAct 步骤 1 ---
+2026-10-21 22:33:30,896 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:30,924 - agent.tools.nl2sql - INFO - NL2SQL查询: SELECT * FROM customers LIMIT 5;
+2026-10-21 22:33:30,925 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:30,925 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-21 22:33:30,925 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-21 22:33:30,930 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:30,930 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-21 22:33:30,930 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-21 22:33:30,937 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:33:30,941 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-21 22:33:30,941 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-21 22:33:30,946 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-21 22:33:30,951 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-21 22:33:30,951 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-21 22:33:30,956 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:30,959 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-21 22:33:30,960 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-21 22:33:30,966 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-21 22:33:30,968 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-21 22:33:30,969 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-21 22:33:30,969 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:32,027 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:32,030 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT * FROM sales_data LIMIT 5...
+2026-10-21 22:33:32,076 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:33:32,107 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询成功:
+       order_id customer_id  order_date  total_amount     status  quantity
+0  SO2025000030    ...
+2026-10-21 22:33:32,107 - agent.react_agent - INFO - --- ReAct 步骤 2 ---
+2026-10-21 22:33:36,135 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:36,137 - agent.tools.nl2sql - INFO - NL2SQL查询: SELECT customer_id, SUM(total_amount) AS customer_value FROM orders GROUP BY customer_id ORDER BY customer_value DESC LIMIT 10
+2026-10-21 22:33:36,137 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:36,137 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-21 22:33:36,138 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-21 22:33:36,142 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:36,142 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-21 22:33:36,142 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-21 22:33:36,147 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:33:36,149 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-21 22:33:36,150 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-21 22:33:36,156 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-21 22:33:36,161 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-21 22:33:36,161 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-21 22:33:36,166 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:36,169 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-21 22:33:36,169 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-21 22:33:36,175 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-21 22:33:36,177 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-21 22:33:36,177 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-21 22:33:36,178 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:37,125 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:37,126 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT customer_id, SUM(total_amount) AS customer_value FROM sales_data GROUP BY customer_id ORDER B...
+2026-10-21 22:33:37,162 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 10 行
+2026-10-21 22:33:37,167 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询成功:
+  customer_id  customer_value
+0    CUST1166         14518.6
+1    CUST1298         14196.9
+2   ...
+2026-10-21 22:33:37,167 - agent.react_agent - INFO - --- ReAct 步骤 3 ---
+2026-10-21 22:33:40,870 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:40,872 - agent.react_agent - INFO - Action: analyze_data, Observation: 没有可用数据集，请先加载数据...
+2026-10-21 22:33:40,872 - agent.react_agent - INFO - --- ReAct 步骤 4 ---
+2026-10-21 22:33:44,791 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:44,792 - agent.tools.nl2sql - INFO - NL2SQL查询: SELECT customer_id, SUM(total_amount) AS customer_value FROM orders GROUP BY customer_id ORDER BY customer_value DESC LIMIT 1000
+2026-10-21 22:33:44,792 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:44,793 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-21 22:33:44,793 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-21 22:33:44,796 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:44,797 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-21 22:33:44,797 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-21 22:33:44,803 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:33:44,806 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-21 22:33:44,806 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-21 22:33:44,811 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-21 22:33:44,816 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-21 22:33:44,816 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-21 22:33:44,822 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:33:44,824 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-21 22:33:44,825 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-21 22:33:44,829 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-21 22:33:44,832 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-21 22:33:44,832 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-21 22:33:44,832 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:33:45,793 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:33:45,795 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT customer_id, SUM(total_amount) AS customer_value FROM sales_data GROUP BY customer_id ORDER B...
+2026-10-21 22:33:45,808 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 349 行
+2026-10-21 22:33:45,838 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询成功:
+    customer_id  customer_value
+0      CUST1166         14518.6
+1      CUST1298         14196....
+2026-10-21 22:33:45,838 - agent.react_agent - INFO - --- ReAct 步骤 5 ---
+2026-10-21 22:34:06,004 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:34:06,006 - agent.react_agent - INFO - ReAct完成 (共5步)
+2026-10-21 22:34:27,214 - agent.react_agent - INFO - ReAct Agent开始处理: 查看销售趋势
+2026-10-21 22:34:27,214 - agent.react_agent - INFO - --- ReAct 步骤 1 ---
+2026-10-21 22:34:30,149 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:34:30,150 - agent.tools.nl2sql - INFO - NL2SQL查询: SELECT DATE(order_date) as date, SUM(total_amount) as sales_amount FROM orders GROUP BY DATE(order_date) ORDER BY date LIMIT 100
+2026-10-21 22:34:30,150 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:34:30,150 - agent.tools.nl2sql - INFO - RAG上下文已生成 (21 字符)
+2026-10-21 22:34:30,151 - agent.tools.database_connector - INFO - 执行SQL查询: SHOW TABLES...
+2026-10-21 22:34:30,156 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:34:30,156 - agent.tools.database_connector - INFO - ✓ 找到 4 个表
+2026-10-21 22:34:30,157 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE city...
+2026-10-21 22:34:30,164 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 5 行
+2026-10-21 22:34:30,166 - agent.tools.database_connector - INFO - ✓ 获取表 city 的结构
+2026-10-21 22:34:30,166 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE country...
+2026-10-21 22:34:30,173 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 15 行
+2026-10-21 22:34:30,177 - agent.tools.database_connector - INFO - ✓ 获取表 country 的结构
+2026-10-21 22:34:30,177 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE countrylanguage...
+2026-10-21 22:34:30,182 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 4 行
+2026-10-21 22:34:30,184 - agent.tools.database_connector - INFO - ✓ 获取表 countrylanguage 的结构
+2026-10-21 22:34:30,185 - agent.tools.database_connector - INFO - 执行SQL查询: DESCRIBE sales_data...
+2026-10-21 22:34:30,191 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 6 行
+2026-10-21 22:34:30,193 - agent.tools.database_connector - INFO - ✓ 获取表 sales_data 的结构
+2026-10-21 22:34:30,193 - agent.tools.nl2sql - INFO - 生成SQL (知识库模板 → LLM → 规则匹配)
+2026-10-21 22:34:30,194 - agent.knowledge.knowledge_base - INFO - 检索到 0 个相关指标: []
+2026-10-21 22:34:31,217 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:34:31,220 - agent.tools.database_connector - INFO - 执行SQL查询: SELECT DATE(order_date) AS date, SUM(total_amount) AS sales_amount FROM sales_data GROUP BY DATE(ord...
+2026-10-21 22:34:31,238 - agent.tools.database_connector - INFO - ✓ 查询完成，返回 100 行
+2026-10-21 22:34:31,249 - agent.react_agent - INFO - Action: nl2sql_query, Observation: 查询成功:
+          date  sales_amount
+0   2025-10-20        4996.0
+1   2025-10-21        5493.7
+2   202...
+2026-10-21 22:34:31,249 - agent.react_agent - INFO - --- ReAct 步骤 2 ---
+2026-10-21 22:34:34,704 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:34:34,706 - agent.react_agent - INFO - Action: generate_chart, Observation: 没有可用数据集...
+2026-10-21 22:34:34,706 - agent.react_agent - INFO - --- ReAct 步骤 3 ---
+2026-10-21 22:35:36,898 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:35:36,900 - agent.react_agent - INFO - Action: analyze_data, Observation: 没有可用数据集，请先加载数据...
+2026-10-21 22:35:36,900 - agent.react_agent - INFO - --- ReAct 步骤 4 ---
+2026-10-21 22:36:39,936 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:36:39,938 - agent.react_agent - INFO - Action: analyze_data, Observation: 没有可用数据集，请先加载数据...
+2026-10-21 22:36:39,938 - agent.react_agent - INFO - --- ReAct 步骤 5 ---
+2026-10-21 22:37:44,012 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:37:44,014 - agent.react_agent - ERROR - 工具执行失败 (generate_report): EcommerceAgent._react_generate_report() got an unexpected keyword argument 'raw_input'
+2026-10-21 22:37:44,014 - agent.react_agent - INFO - Action: generate_report, Observation: 工具执行失败: EcommerceAgent._react_generate_report() got an unexpected keyword argument 'raw_input'...
+2026-10-21 22:37:44,014 - agent.react_agent - INFO - --- ReAct 步骤 6 ---
+2026-10-21 22:37:53,721 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-21 22:37:53,722 - agent.react_agent - INFO - ReAct完成 (共6步)
